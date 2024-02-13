@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t zakidr/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t zakidr789/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true zakidr/react-test npm test -- --coverage
+  - docker run -e CI=true zakidr789/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t zakidr/multi-client ./client
-  - docker build -t zakidr/multi-nginx ./nginx
-  - docker build -t zakidr/multi-server ./server
-  - docker build -t zakidr/multi-worker ./worker
+  - docker build -t zakidr789/multi-client ./client
+  - docker build -t zakidr789/multi-nginx ./nginx
+  - docker build -t zakidr789/multi-server ./server
+  - docker build -t zakidr789/multi-worker ./worker
 # LOG in to the docker client
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # Take those images and push them to docker hub
-  - docker push zakidr/multi-client
-  - docker push zakidr/multi-nginx
-  - docker push zakidr/multi-server
-  - docker push zakidr/multi-worker
+  - docker push zakidr789/multi-client
+  - docker push zakidr789/multi-nginx
+  - docker push zakidr789/multi-server
+  - docker push zakidr789/multi-worker
