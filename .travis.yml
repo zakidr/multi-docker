@@ -20,3 +20,15 @@ after_success:
   - docker push zakidr789/multi-nginx
   - docker push zakidr789/multi-server
   - docker push zakidr789/multi-worker
+
+deploy:
+  provider: eleasticbeanstalk
+  region: "eu-north-1"
+  app: "multi-docker"
+  env: "Multi-docker-env-"
+  bucket_name: "elasticbeanstalk-eu-north-1-211125648928"
+  bucket_path: "docker-multi"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
