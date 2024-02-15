@@ -9,17 +9,17 @@ script:
   - docker run -e CI=true zakidr789/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t zakidr789/multi-client ./client
-  - docker build -t zakidr789/multi-nginx ./nginx
-  - docker build -t zakidr789/multi-server ./server
-  - docker build -t zakidr789/multi-worker ./worker
+  - docker build -t zakidr789/multi-client-10-14 ./client
+  - docker build -t zakidr789/multi-nginx-10-14 ./nginx
+  - docker build -t zakidr789/multi-server-10-14 ./server
+  - docker build -t zakidr789/multi-worker-10-14 ./worker
 # Log in to the docker client with command line;
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # Take those images and push them to docker hub
-  - docker push zakidr789/multi-client
-  - docker push zakidr789/multi-nginx
-  - docker push zakidr789/multi-server
-  - docker push zakidr789/multi-worker
+  - docker push zakidr789/multi-client-10-14
+  - docker push zakidr789/multi-nginx-10-14
+  - docker push zakidr789/multi-server-10-14
+  - docker push zakidr789/multi-worker-10-14
 
 deploy:
   provider: eleasticbeanstalk
@@ -27,7 +27,7 @@ deploy:
   app: "multi-docker"
   env: "Multi-docker-env"
   bucket_name: "elasticbeanstalk-eu-north-1-211125648928"
-  bucket_path: "docker-multi"
+  bucket_path: "docker-multi1"
   on:
     branch: main
   access_key_id: $AWS_ACCESS_KEY
