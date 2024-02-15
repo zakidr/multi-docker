@@ -13,7 +13,7 @@ after_success:
   - docker build -t zakidr789/multi-nginx ./nginx
   - docker build -t zakidr789/multi-server ./server
   - docker build -t zakidr789/multi-worker ./worker
-# Log in to the docker client with command line password without ;
+# Log in to the docker client with command line;
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # Take those images and push them to docker hub
   - docker push zakidr789/multi-client
@@ -25,9 +25,9 @@ deploy:
   provider: eleasticbeanstalk
   region: "eu-north-1"
   app: "multi-docker"
-  env: "Multi-docker-env-1"
+  env: "Multi-docker-env"
   bucket_name: "elasticbeanstalk-eu-north-1-211125648928"
-  bucket_path: "docker-multi3"
+  bucket_path: "docker-multi"
   on:
     branch: main
   access_key_id: $AWS_ACCESS_KEY
